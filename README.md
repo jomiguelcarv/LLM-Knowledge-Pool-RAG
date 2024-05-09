@@ -60,6 +60,7 @@ llama3 = [
 -- Run the python scripts in order:
 - `01_parse_pdf.py` will take any pdfs inside the knowledge_pool folder and turn them into structured .txt files
 - `02_create_vector_db.py` will create an embeddings database as a json
+> **Note:** Optionally, use `02.1_merge_embeddings.py` to join multiple embedding sources into a single one.
 - `03_ask_rag.py`will let you ask questions about your corpus of text with a RAG system.
 
 > **Note:** To run the RAG with your **own corpus of text**, place any pdf files inside the folder `knowledge_pool`.
