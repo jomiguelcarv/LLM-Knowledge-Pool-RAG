@@ -13,13 +13,9 @@ This project covers parsing raw data, creating an embedding database, and doing 
 ```bash
 
 git  clone  https://github.com/jomi13/LLM-Knowledge-Pool-RAG
-
 cd <your  local  repo  directory>
-
 python3.10  -m  venv  myenv
-
 source  myenv/bin/activate
-
 pip  install  -r  requirements.txt
 
 ```
@@ -31,9 +27,7 @@ pip  install  -r  requirements.txt
 ```python
 
 LLAMAPARSE_API_KEY = "<your key>"
-
 OPENAI_API_KEY = "<your key>"
-
 REPLICATE_API_TOKEN = "<your key>"
 
 ....
@@ -56,22 +50,13 @@ REPLICATE_API_TOKEN = "<your key>"
 ```python
 
 llama3 = [
-
 {
-
 "model": "lmstudio-community/Meta-Llama-3-8B-Instruct-GGUF",
-
 'api_key': 'any string here is fine',
-
 'api_type': 'openai',
-
 'base_url': "http://localhost:1234/v1",
-
 "cache_seed": random.randint(0, 100000),
-
-}
-
-]
+}]
 
 ```
 
@@ -79,15 +64,12 @@ llama3 = [
 
 ## Running
 
-  
-
 --In LM Studio:
 
 - Go to **Local Server** and load both models
 
 - Click **Start Server**
 
-  
 
 -- Run the python scripts in order:
 
