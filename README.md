@@ -7,7 +7,6 @@ To set up the project on your local machine, start by creating a virtual environ
 ```bash
 git clone https://github.com/jomi13/LLM-Knowledge-Pool-RAG
 cd <your local repo directory>
-source myenv/bin/activate
 python3.10 -m venv myenv
 source myenv/bin/activate
 pip install -r requirements.txt
