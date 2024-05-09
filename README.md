@@ -1,6 +1,6 @@
 # LLM-Knowledge-Pool-RAG
 
-The repository containing the first part of an LLM Pipeline for Design Exploration.
+The repository contains **Part 1** of an LLM Pipeline for Design Exploration.
 
 This project covers parsing raw data, creating an embedding database, and doing knowledge retrieval with a RAG system.
 
@@ -11,16 +11,12 @@ This project covers parsing raw data, creating an embedding database, and doing 
   
 
 ```bash
-
-git  clone  https://github.com/jomi13/LLM-Knowledge-Pool-RAG
-cd <your  local  repo  directory>
-python3.10  -m  venv  myenv
-source  myenv/bin/activate
-pip  install  -r  requirements.txt
-
+git clone https://github.com/jomi13/LLM-Knowledge-Pool-RAG
+cd <your local repo directory>
+python3.10 -m venv myenv
+source myenv/bin/activate
+pip install -r requirements.txt
 ```
-
-  
 
 -- Create a `keys.py` file inside the directory, containing any necessary keys you may need, like so:
 
@@ -29,12 +25,9 @@ pip  install  -r  requirements.txt
 LLAMAPARSE_API_KEY = "<your key>"
 OPENAI_API_KEY = "<your key>"
 REPLICATE_API_TOKEN = "<your key>"
-
 ....
 
 ```
-
-  
 
 -- Install [LM Studio](https://lmstudio.ai) and download:
 
@@ -42,13 +35,10 @@ REPLICATE_API_TOKEN = "<your key>"
 
 - An embedding model, such as: "nomic-ai/nomic-embed-text-v1.5-GGUF"
 
-  
-
 
 -- In `config.py`, setup the configuration for the model you just downloaded, like so:
 
 ```python
-
 llama3 = [
 {
 "model": "lmstudio-community/Meta-Llama-3-8B-Instruct-GGUF",
@@ -60,21 +50,13 @@ llama3 = [
 
 ```
 
-  
-
 ## Running
 
 --In LM Studio:
-
 - Go to **Local Server** and load both models
-
 - Click **Start Server**
 
-
 -- Run the python scripts in order:
-
 - `01_parse_pdf.py` will take any pdfs inside the knowledge_pool folder and turn them into structured .txt files
-
 - `02_create_vector_db.py` will create an embeddings database as a json
-
 - `03_ask_rag.py`will let you ask questions about your corpus of text with a RAG system.
