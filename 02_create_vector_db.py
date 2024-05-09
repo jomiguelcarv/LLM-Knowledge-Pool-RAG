@@ -31,6 +31,6 @@ for document in os.listdir("knowledge_pool"):
         with open(output_path, 'w', encoding='utf-8') as outfile:
             json.dump(embeddings, outfile, indent=2, ensure_ascii=False)
 
-        print(f"Finished vectorizing {document}")
+        print(f"Finished vectorizing. Created {document}")
 
 print("Finished vectorizing all documents")

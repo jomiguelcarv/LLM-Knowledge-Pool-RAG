@@ -53,6 +53,7 @@ def rag_answer(question, rag_result, model=llama3[0]["model"]):
     )
     return completion.choices[0].message.content
 
+print("Waiting for an answer...")
 # Embed our question
 question_vector = get_embedding(question)
 
@@ -66,4 +67,5 @@ rag_result = "\n".join(scored_contents)
 
 # Get answer from rag informed agent
 answer = rag_answer(question, rag_result)
+print("ANSWER:")
 print(answer)
