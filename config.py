@@ -2,8 +2,8 @@ import random
 from openai import OpenAI
 from keys import *
 
+
 # API
-# use to send requests to LM Studio
 local_client = OpenAI(base_url="http://localhost:1234/v1", api_key="lm-studio")
 openai_client = OpenAI(api_key=OPENAI_API_KEY)
 
@@ -86,3 +86,16 @@ llama3 = [
 #             "cache_seed": random.randint(0, 100000),
 #         }
 # ]
+
+# Helping functions
+def api_mode (mode):
+    if mode == "local":
+        client = local_client
+        completion_model = mistral_7b #whatever model you want to use
+        return client, completion_model
+    elif mode == "openai":
+        client = openai_client
+        completion_model = gpt4_turbo
+        return client, completion_model
+    else:
+        raise ValueError("Please specify if you want to run local or openai models")

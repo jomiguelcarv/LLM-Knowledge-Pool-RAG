@@ -4,22 +4,10 @@ import numpy as np
 import json
 from config import *
 
-def api_mode (mode):
-    if mode == "local":
-        client = local_client
-        completion_model = mistral_7b #whatever model you want to use
-        return client, completion_model
-    elif mode == "openai":
-        client = openai_client
-        completion_model = gpt4_turbo
-        return client, completion_model
-    else:
-        raise ValueError("Please specify if you want to run local or openai models")
-
 embeddings_json= "knowledge_pool/brutalism_wikipedia.json"
 
 # Choose between "local" or "openai" mode
-mode = "openai" # or "local"
+mode = "local" # or "local"
 client, completion_model = api_mode(mode)
 
 # question = "What is the program for the building?"
