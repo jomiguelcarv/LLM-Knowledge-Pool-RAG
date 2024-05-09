@@ -37,7 +37,7 @@ REPLICATE_API_TOKEN = "<your key>"
 - An embedding model, such as: "nomic-ai/nomic-embed-text-v1.5-GGUF"
 
 
--- In `config.py`, setup the configuration for the model you just downloaded, like so:
+-- In `config.py`, setup the configuration for the model you just downloaded. Example for Llama 3:
 
 ```python
 llama3 = [
@@ -50,7 +50,6 @@ llama3 = [
 }]
 
 ```
-
 
 ## Running
 
