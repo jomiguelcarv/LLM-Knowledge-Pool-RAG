@@ -13,11 +13,11 @@ def get_embedding(text, model=embedding_model):
 with open(document_to_embed, 'r', encoding='utf-8', errors='ignore') as infile:
     text_file = infile.read()
 
-# Split the text into lines (each line = 1 vector)
+# Split the text into lines (each line = 1 vector). Pick this or the following chunking strategy.
 chunks = text_file.split("\n")
 
 # Alternetively, split the text into paragraphs by using the empty lines in between them
-chunks = text_file.split("\n\n")
+# chunks = text_file.split("\n\n")
         
 # Create the embeddings
 embeddings = []

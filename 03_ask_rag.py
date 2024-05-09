@@ -4,13 +4,15 @@ import json
 from config import *
 
 # Change the path accordingly
-embeddings_json= "knowledge_pool/Competition_brief.json"
+embeddings_json= "knowledge_pool/brutalism_wikipedia.json"
+loaded_model = mistral_7b
 
 # question = "What is the program for the building?"
 # question = "What is the place like?"
-question = "Is there any mention of the construction materials that should be used?"
+# question = "Is there any mention of the construction materials that should be used?"
+question = "What are the names of the most famous brutalist buildings?"
 
-num_results = 100 #how many vectors to retrieve
+num_results = 1 #how many vectors to retrieve
 
 
 def get_embedding(text, model=embedding_model):
@@ -36,20 +38,18 @@ def get_vectors(question_vector, index_lib):
     best_vectors = scores[0:num_results]
     return best_vectors
 
-def rag_answer(question, rag_result, model=llama3[0]["model"]):
+def rag_answer(question, prompt, rag_result, model=loaded_model[0]["model"]):
     completion = client.chat.completions.create(
-    model=model,
-    messages=[
-        {"role": "system", 
-            "content": f"""Answer the user question based on the provided information. 
-                        If the provided information does not answer the question, 
-                        simply reply "There is no information available to answer the question"
-                        and nothing else.
-                        PROVIDED INFORMATION: """ + rag_result},
-        {"role": "user", 
-            "content": question}
-    ],
-    temperature=0.6,
+        model=model,
+        messages=[
+            {"role": "system", 
+             "content": prompt
+            },
+            {"role": "user", 
+             "content": question
+            }
+        ],
+        temperature=0.1,
     )
     return completion.choices[0].message.content
 
@@ -66,6 +66,12 @@ scored_contents = [vector['content'] for vector in scored_vectors]
 rag_result = "\n".join(scored_contents)
 
 # Get answer from rag informed agent
-answer = rag_answer(question, rag_result)
+prompt = f"""Answer the question based on the provided information. 
+            You are given the extracted parts of a long document and a question. Provide a direct answer.
+            If you don't know the answer, just say "I do not know." Don't make up an answer.
+            PROVIDED INFORMATION: """ + rag_result
+
+print(prompt)
+answer = rag_answer(question, prompt, rag_result)
 print("ANSWER:")
 print(answer)
