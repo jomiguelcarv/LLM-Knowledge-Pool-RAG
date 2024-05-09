@@ -1,3 +1,4 @@
+# This script runs locally (w/LM Studio server) and an embedding model loaded.
 import json
 import os
 from config import *
@@ -6,18 +7,17 @@ document_to_embed = "knowledge_pool/brutalism_wikipedia.txt"
 
 def get_embedding(text, model=embedding_model):
    text = text.replace("\n", " ")
-   return client.embeddings.create(input = [text], model=model).data[0].embedding
-
+   return local_client.embeddings.create(input = [text], model=model).data[0].embedding
 
 # Read the text document
 with open(document_to_embed, 'r', encoding='utf-8', errors='ignore') as infile:
     text_file = infile.read()
 
 # Split the text into lines (each line = 1 vector). Pick this or the following chunking strategy.
-chunks = text_file.split("\n")
+# chunks = text_file.split("\n")
 
 # Alternetively, split the text into paragraphs by using the empty lines in between them
-# chunks = text_file.split("\n\n")
+chunks = text_file.split("\n\n")
         
 # Create the embeddings
 embeddings = []

@@ -1,9 +1,7 @@
-import json
-import os
-
-
 # Optional script if you want to use muliple .txt files to create your embeddings.
 # After getting those txt files with 02_create_vector_db.py, run this script to get a single .json file containing all your data
+import json
+import os
 
 def merge_json_files(directory):
     merged_data = list()

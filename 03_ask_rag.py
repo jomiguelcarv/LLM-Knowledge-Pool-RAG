@@ -1,11 +1,26 @@
+# This script can run both locally (w/LM Studio) or with an OpenAI key.
 from openai import OpenAI
 import numpy as np
 import json
 from config import *
 
-# Change the path accordingly
+def api_mode (mode):
+    if mode == "local":
+        client = local_client
+        completion_model = mistral_7b #whatever model you want to use
+        return client, completion_model
+    elif mode == "openai":
+        client = openai_client
+        completion_model = gpt4_turbo
+        return client, completion_model
+    else:
+        raise ValueError("Please specify if you want to run local or openai models")
+
 embeddings_json= "knowledge_pool/brutalism_wikipedia.json"
-loaded_model = mistral_7b
+
+# Choose between "local" or "openai" mode
+mode = "openai" # or "local"
+client, completion_model = api_mode(mode)
 
 # question = "What is the program for the building?"
 # question = "What is the place like?"
@@ -17,7 +32,7 @@ num_results = 1 #how many vectors to retrieve
 
 def get_embedding(text, model=embedding_model):
     text = text.replace("\n", " ")
-    response = client.embeddings.create(input = [text], model=model)
+    response = local_client.embeddings.create(input = [text], model=model)
     vector = response.data[0].embedding
     return vector
 
@@ -38,7 +53,7 @@ def get_vectors(question_vector, index_lib):
     best_vectors = scores[0:num_results]
     return best_vectors
 
-def rag_answer(question, prompt, rag_result, model=loaded_model[0]["model"]):
+def rag_answer(question, prompt, model=completion_model[0]["model"]):
     completion = client.chat.completions.create(
         model=model,
         messages=[
@@ -52,6 +67,17 @@ def rag_answer(question, prompt, rag_result, model=loaded_model[0]["model"]):
         temperature=0.1,
     )
     return completion.choices[0].message.content
+
+# def rag_answer(question, prompt, model=completion_model[0]["model"]):
+#     print("got in")
+#     response = client.chat.completions.create(
+#         model="gpt-3.5-turbo", # model = "deployment_name".
+#         messages=[
+#             {"role": "system", "content": "Assistant is a large language model trained by OpenAI."},
+#             {"role": "user", "content": "Who were the founders of Microsoft?"}
+#         ]
+#     )
+#     return response.choices[0].message.content
 
 print("Waiting for an answer...")
 # Embed our question
@@ -72,6 +98,6 @@ prompt = f"""Answer the question based on the provided information.
             PROVIDED INFORMATION: """ + rag_result
 
 print(prompt)
-answer = rag_answer(question, prompt, rag_result)
+answer = rag_answer(question, prompt)
 print("ANSWER:")
 print(answer)

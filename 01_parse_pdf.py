@@ -1,3 +1,4 @@
+# This script needs a llama-parse key setup in the keys.py script to run.
 from llama_parse import LlamaParse
 import os
 from config import *

@@ -2,8 +2,10 @@ import random
 from openai import OpenAI
 from keys import *
 
-# LM Studio Server
-client = OpenAI(base_url="http://localhost:1234/v1", api_key="lm-studio")
+# API
+# use to send requests to LM Studio
+local_client = OpenAI(base_url="http://localhost:1234/v1", api_key="lm-studio")
+openai_client = OpenAI(api_key=OPENAI_API_KEY)
 
 # Models
 embedding_model = "nomic-ai/nomic-embed-text-v1.5-GGUF"
@@ -46,11 +48,13 @@ westlake = [
 ]
 
 # Notice how this model is not running locally. It uses an OpenAI key.
-gpt4_turbo = [{
-        "model": "gpt-4-turbo-preview",
-        "api_key": OPENAI_API_KEY,
-        "cache_seed": random.randint(0, 100000),
-}]
+gpt4_turbo = [
+        {
+            "model": "gpt-4-turbo-preview",
+            "api_key": OPENAI_API_KEY,
+            "cache_seed": random.randint(0, 100000),
+        }
+]
 
 command_r = [
         {
