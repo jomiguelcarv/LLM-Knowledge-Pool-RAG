@@ -28,6 +28,7 @@ REPLICATE_API_TOKEN = "<your key>"
 ....
 
 ```
+> **Note:** For Part 1, you only need a key from [Llama-index](https://cloud.llamaindex.ai).
 
 -- Install [LM Studio](https://lmstudio.ai) and download:
 
@@ -50,6 +51,7 @@ llama3 = [
 
 ```
 
+
 ## Running
 
 --In LM Studio:
@@ -60,3 +62,5 @@ llama3 = [
 - `01_parse_pdf.py` will take any pdfs inside the knowledge_pool folder and turn them into structured .txt files
 - `02_create_vector_db.py` will create an embeddings database as a json
 - `03_ask_rag.py`will let you ask questions about your corpus of text with a RAG system.
+
+> **Note:** To run the RAG with your **own corpus of text**, place any pdf files inside the folder `knowledge_pool`.

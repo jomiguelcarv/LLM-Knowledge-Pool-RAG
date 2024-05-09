@@ -2,17 +2,13 @@ import json
 import os
 from config import *
 
-### UPDATE ACCORDING TO YOUR SETUP ###
-embedding_model = "nomic-ai/nomic-embed-text-v1.5-GGUF"
-knowledge_pool = "C1_KnowledgePool_Rag/knowledge_pool"
-
 def get_embedding(text, model=embedding_model):
    text = text.replace("\n", " ")
    return client.embeddings.create(input = [text], model=model).data[0].embedding
 
-for document in os.listdir(knowledge_pool):
+for document in os.listdir("knowledge_pool"):
     if document.endswith(".txt"):
-        filepath = os.path.join(knowledge_pool, document)
+        filepath = os.path.join("knowledge_pool", document)
     
         # Read the text document
         with open(filepath, 'r', encoding='utf-8', errors='ignore') as infile:
@@ -31,7 +27,7 @@ for document in os.listdir(knowledge_pool):
 
         # Save the embeddings to a json file
         output_filename = os.path.splitext(document)[0]
-        output_path = os.path.join(knowledge_pool, f"{output_filename}.json")
+        output_path = os.path.join("knowledge_pool", f"{output_filename}.json")
         with open(output_path, 'w', encoding='utf-8') as outfile:
             json.dump(embeddings, outfile, indent=2, ensure_ascii=False)
 

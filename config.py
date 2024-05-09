@@ -6,6 +6,9 @@ from keys import *
 client = OpenAI(base_url="http://localhost:1234/v1", api_key="lm-studio")
 
 # Models
+
+embedding_model = "nomic-ai/nomic-embed-text-v1.5-GGUF"
+
 local_mistral_8x7b = [
         {
             "model": "cjpais/llava-1.6-mistral-7b-gguf/llava-1.6-mistral-7b.Q6_K.gguf",

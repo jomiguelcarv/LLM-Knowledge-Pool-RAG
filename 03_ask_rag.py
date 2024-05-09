@@ -3,14 +3,15 @@ import numpy as np
 import json
 from config import *
 
-### UPDATE ACCORDING TO YOUR SETUP ###
+# Change the path accordingly
+embeddings_json= "knowledge_pool/Competition_brief.json"
+
 # question = "What is the program for the building?"
 # question = "What is the place like?"
 question = "Is there any mention of the construction materials that should be used?"
+
 num_results = 100 #how many vectors to retrieve
-embeddings_json= "C1_KnowledgePool_Rag/knowledge_pool/Competition_brief.json"
-embedding_model = "nomic-ai/nomic-embed-text-v1.5-GGUF"
-rag_model = "lmstudio-community/Meta-Llama-3-8B-Instruct-GGUF"
+
 
 def get_embedding(text, model=embedding_model):
     text = text.replace("\n", " ")
@@ -35,7 +36,7 @@ def get_vectors(question_vector, index_lib):
     best_vectors = scores[0:num_results]
     return best_vectors
 
-def rag_answer(question, rag_result, model=rag_model):
+def rag_answer(question, rag_result, model=llama3[0]["model"]):
     completion = client.chat.completions.create(
     model=model,
     messages=[

@@ -2,10 +2,7 @@ from llama_parse import LlamaParse
 import os
 from config import *
 
-### UPDATE ACCORDING TO YOUR SETUP ###
-knowledge_pool = "C1_KnowledgePool_Rag/knowledge_pool"
-
-# Parsing parameters
+# Parser parameters
 parser = LlamaParse(
     api_key=LLAMAPARSE_API_KEY, 
     result_type="markdown",  # "markdown" or "text"
@@ -14,10 +11,10 @@ parser = LlamaParse(
     language="en",
 )
 
-for document in os.listdir(knowledge_pool):
+for document in os.listdir("knowledge_pool"):
     #Iterate through the pdfs
     if document.endswith(".pdf"):
-        filepath = os.path.join(knowledge_pool, document)
+        filepath = os.path.join("knowledge_pool", document)
 
         # Parse the pdf
         pdf = parser.load_data(filepath)
@@ -25,7 +22,7 @@ for document in os.listdir(knowledge_pool):
 
         # Save to a txt file
         output_filename = os.path.splitext(document)[0]
-        output_path = os.path.join(knowledge_pool, f"{output_filename}.txt")
+        output_path = os.path.join("knowledge_pool", f"{output_filename}.txt")
         with open(output_path, 'w') as f:
             f.write(text)
             
