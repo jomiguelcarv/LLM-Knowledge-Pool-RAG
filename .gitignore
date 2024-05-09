@@ -3,3 +3,4 @@ keys.py
 
 # ignore ALL files in ANY directory specified here
 myenv/
+__pycache__/

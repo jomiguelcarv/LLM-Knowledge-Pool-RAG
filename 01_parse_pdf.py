@@ -27,5 +27,7 @@ for document in os.listdir("knowledge_pool"):
             f.write(text)
             
         print(f"Finished parsing {document}")
+
+    # juntar todos os documentos a que dei parse num só txt
     
 print("Finished parsing all documents")
