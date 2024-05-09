@@ -1,0 +1,5 @@
+# ignore ALL files specified here
+keys.py
+
+# ignore ALL files in ANY directory specified here
+temp/
