@@ -21,13 +21,12 @@ pip install -r requirements.txt
 
 ```python
 
-LLAMAPARSE_API_KEY = "<your key>"
-OPENAI_API_KEY = "<your key>"
-REPLICATE_API_TOKEN = "<your key>"
+LLAMAPARSE_API_KEY = "your key"
+OPENAI_API_KEY = "your key"
 ....
 
 ```
-> **Note:** For Part 1, you only need a key from [Llama-index](https://cloud.llamaindex.ai).
+> **Note:** Get a key from [Llama-index](https://cloud.llamaindex.ai) here. Get a key from [OpenAI](https://platform.openai.com/apps) here.
 
 -- Install [LM Studio](https://lmstudio.ai) and download:
 
@@ -62,4 +61,4 @@ llama3 = [
 - `02.1_merge_embeddings.py` is for optional use, if you want to join multiple embedding sources into a single one.
 - `03_ask_rag.py`will let you ask questions about your corpus of text with a RAG system.
 
-> **Note:** To run the RAG with your **own corpus of text**, place any pdf files inside the folder `knowledge_pool`. The script `03_ask_rag` has two modes: local inference (with LM Studio) or using OpenAI (GPT/4) - check inside for more details.
+> **Note:** To run the RAG with your **own corpus of text**, place any pdf files inside the folder `knowledge_pool`. The script `03_ask_rag` has **two modes**: local inference (with LM Studio) or using OpenAI (GPT/4) - check inside for more details.

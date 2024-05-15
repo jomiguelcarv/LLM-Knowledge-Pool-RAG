@@ -56,17 +56,6 @@ def rag_answer(question, prompt, model=completion_model[0]["model"]):
     )
     return completion.choices[0].message.content
 
-# def rag_answer(question, prompt, model=completion_model[0]["model"]):
-#     print("got in")
-#     response = client.chat.completions.create(
-#         model="gpt-3.5-turbo", # model = "deployment_name".
-#         messages=[
-#             {"role": "system", "content": "Assistant is a large language model trained by OpenAI."},
-#             {"role": "user", "content": "Who were the founders of Microsoft?"}
-#         ]
-#     )
-#     return response.choices[0].message.content
-
 print("Waiting for an answer...")
 # Embed our question
 question_vector = get_embedding(question)
@@ -82,7 +71,7 @@ rag_result = "\n".join(scored_contents)
 # Get answer from rag informed agent
 prompt = f"""Answer the question based on the provided information. 
             You are given the extracted parts of a long document and a question. Provide a direct answer.
-            If you don't know the answer, just say "I do not know." Don't make up an answer.
+            If you don't know the answer, just say "I do not know.". Don't make up an answer.
             PROVIDED INFORMATION: """ + rag_result
 
 print(prompt)
